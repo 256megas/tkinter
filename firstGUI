@@ -1,0 +1,52 @@
+# https://www.geeksforgeeks.org/create-first-gui-application-using-python-tkinter/
+
+from tkinter import *
+
+# Creamos una ventana root
+# https://www.pythontutorial.net/tkinter/tkinter-window/
+root = Tk()
+# Titulo ventana root
+root.title("Primera prueba tkinter")
+# dimensiones ventana root
+# geometry(widthxheight+x+y)
+# root.geometry('500x500+200+200')
+
+# Centramos la ventana
+window_width = 300
+window_height = 200
+screen_width = root.winfo_screenwidth()
+screen_height = root.winfo_screenheight()
+center_x = int(screen_width/2 - window_width / 2)
+center_y = int(screen_height/2 - window_height / 2)
+root.geometry(f'{window_width}x{window_height}+{center_x}+{center_y}')
+
+# Redimensionable (width,height)
+# root.resizable(False, False)
+# window.minsize(min_width, min_height)
+# window.maxsize(min_height, max_height)
+
+# Transparencias
+# root.attributes('-alpha', 0.5)
+
+# Icono
+root.iconbitmap('./assets/icon.ico')
+
+lbl = Label(root, text="Hola mundo")
+# lbl.grid()
+# rel usa porcentajes de 1=>0.7 =70%
+lbl.place(relx=0.5, rely=0.2, anchor='center')
+
+
+def preshButton():
+    lbl.configure(text="Aprieta, Aprieta " + txt.get())
+
+
+btn = Button(root, text="Prueba", fg="red", command=preshButton)
+btn.place(relx=0.5, rely=0.4, anchor='center')
+
+txt = Entry(root, width=10)
+# txt.grid(column=5, row=10)
+txt.place(relx=0.5, rely=0.6, anchor='center')
+
+# Ejecutamos tkinter
+root.mainloop()
